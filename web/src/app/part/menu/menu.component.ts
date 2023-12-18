@@ -11,7 +11,6 @@ import {Router} from '@angular/router';
 })
 export class MenuComponent implements OnInit {
   menus = new Array<BaseMenu>();
-  mouseoverMenus: string | undefined = '未检测到鼠标悬停'
 
   constructor(private router: Router) { }
 
@@ -19,20 +18,6 @@ export class MenuComponent implements OnInit {
     menus.forEach(menu => {
           this.menus.push(menu);
       });
-  }
-
-  getBackgroundColor(menu: BaseMenu): string | undefined {
-    if (this.active(menu) || menu.name === this.mouseoverMenus) {
-      return environment.color;
-    }
-    return;
-  }
-
-  getTextColor(menu: BaseMenu): string | undefined {
-    if (this.active(menu) || menu.name === this.mouseoverMenus) {
-      return 'white';
-    }
-    return;
   }
 
   /**
@@ -56,13 +41,5 @@ export class MenuComponent implements OnInit {
 
     // 判断当前路由是否激活
     return mainRoute === menu.url;
-  }
-
-  onMouseEnter(name: string | undefined) {
-    this.mouseoverMenus = name;
-  }
-
-  onMouseLeave() {
-    this.mouseoverMenus = '';
   }
 }
